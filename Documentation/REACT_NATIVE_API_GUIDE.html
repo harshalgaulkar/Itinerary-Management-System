@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMS Backend - React Native API Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .info-box {
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: white;
+            font-size: 0.85em;
+        }
+        
+        .method.get {
+            background: #3498db;
+        }
+        
+        .method.post {
+            background: #27ae60;
+        }
+        
+        .method.put {
+            background: #f39c12;
+        }
+        
+        .method.delete {
+            background: #e74c3c;
+        }
+        
+        code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background: #3498db;
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .auth-required {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .response-success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .response-error {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .toc {
+            background: #ecf0f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .endpoint-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+        }
+        
+        .request-label, .response-label, .headers-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 15px 0 8px 0;
+        }
+        
+        .url-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin: 50px 0;
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .page-break {
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 IMS Backend - React Native API Guide</h1>
+        
+        <div class="info-box">
+            <strong>Version:</strong> 1.0<br>
+            <strong>Last Updated:</strong> January 19, 2026<br>
+            <strong>Total Endpoints:</strong> 65+<br>
+            <strong>Base URL:</strong> http://localhost:4000
+        </div>
+
+        <h2>📋 Table of Contents</h2>
+        <div class="toc">
+            <ul>
+                <li><a href="#base-config">Base Configuration</a></li>
+                <li><a href="#auth">Authentication Endpoints</a></li>
+                <li><a href="#admin">Admin Endpoints</a></li>
+                <li><a href="#user">User Endpoints</a></li>
+                <li><a href="#destinations">Destination Endpoints</a></li>
+                <li><a href="#packages">Package Endpoints</a></li>
+                <li><a href="#bookings">Booking Endpoints</a></li>
+                <li><a href="#payments">Payment Endpoints</a></li>
+                <li><a href="#reviews">Review Endpoints</a></li>
+                <li><a href="#error-handling">Error Handling</a></li>
+            </ul>
+        </div>
+
+        <h2 id="base-config">⚙️ Base Configuration</h2>
+        <div class="endpoint">
+            <h3>Server Details</h3>
+            <div class="url-box">Base URL: http://localhost:4000</div>
+            <div class="url-box">Protocol: HTTP/HTTPS</div>
+            <div class="url-box">Content-Type: application/json</div>
+            
+            <h3>Request Headers</h3>
+            <pre>{
+  "Content-Type": "application/json",
+  "user_id": "&lt;user_id&gt;"
+}</pre>
+        </div>
+
+        <h2 id="auth">🔐 Authentication Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> User Sign Up
+            </div>
+            <div class="url-box">/users/signup</div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "email": "user@example.com",
+  "password": "password123",
+  "full_name": "John Doe",
+  "phone": "9876543210"
+}</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user_id": 1,
+    "full_name": "John Doe",
+    "email": "user@example.com",
+    "phone": "9876543210",
+    "role": "user"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> User Sign In
+            </div>
+            <div class="url-box">/users/signin</div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "email": "user@example.com",
+  "password": "password123"
+}</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user_id": 1,
+    "full_name": "John Doe",
+    "email": "user@example.com",
+    "phone": "9876543210",
+    "role": "user"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <h2 id="admin">👨‍💼 Admin Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> Create User (Admin Only)
+            </div>
+            <div class="url-box">/admin/signup/user</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes (First admin doesn't require token)
+            </div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "email": "newuser@example.com",
+  "password": "password123",
+  "full_name": "Jane Doe",
+  "phone": "9876543210",
+  "role": "user"
+}</pre>
+            
+            <div class="headers-label">Headers:</div>
+            <pre>user_id: 2</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "message": "User created successfully",
+    "user_id": 5,
+    "email": "newuser@example.com",
+    "full_name": "Jane Doe",
+    "role": "user"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method get">GET</span> Get All Users (Admin Only)
+            </div>
+            <div class="url-box">/admin/users</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes (Admin only)
+            </div>
+            
+            <div class="headers-label">Headers:</div>
+            <pre>user_id: 2</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": [
+    {
+      "user_id": 1,
+      "email": "user@example.com",
+      "full_name": "John Doe",
+      "phone": "1234567890",
+      "role": "user",
+      "created_at": "2024-01-15T10:30:00Z"
+    }
+  ]
+}</pre>
+            </div>
+        </div>
+
+        <h2 id="bookings">📅 Booking Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> Create Booking
+            </div>
+            <div class="url-box">/bookings</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes
+            </div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "package_date_id": 10,
+  "persons": 2,
+  "total_price": 20000,
+  "contact_phone": "9876543210",
+  "notes": "Vegetarian meals required"
+}</pre>
+            
+            <div class="headers-label">Headers:</div>
+            <pre>user_id: 1</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "booking_id": 5,
+    "user_id": 1,
+    "package_date_id": 10,
+    "booked_on": "2024-01-19T10:30:00Z",
+    "persons": 2,
+    "total_price": 20000,
+    "status": "pending"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method get">GET</span> Get All Bookings
+            </div>
+            <div class="url-box">/bookings</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes
+            </div>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": [
+    {
+      "booking_id": 5,
+      "user_id": 1,
+      "package_date_id": 10,
+      "booked_on": "2024-01-19T10:30:00Z",
+      "persons": 2,
+      "total_price": 20000,
+      "status": "pending",
+      "package_title": "Taj Mahal Tour",
+      "destination_name": "Agra"
+    }
+  ]
+}</pre>
+            </div>
+        </div>
+
+        <h2 id="payments">💳 Payment Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> Create Payment
+            </div>
+            <div class="url-box">/payments</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes
+            </div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "booking_id": 5,
+  "amount": 10000,
+  "method": "card",
+  "txn_reference": "TXN123456789"
+}</pre>
+            
+            <div class="headers-label">Headers:</div>
+            <pre>user_id: 1</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "payment_id": 8,
+    "booking_id": 5,
+    "paid_on": "2024-01-19T10:35:00Z",
+    "amount": 10000,
+    "method": "card",
+    "status": "success"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method get">GET</span> Get Payment Summary
+            </div>
+            <div class="url-box">/payments/booking/:booking_id/summary</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes
+            </div>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "booking_id": 5,
+    "booking_total": 20000,
+    "total_paid": 15000,
+    "balance_due": 5000,
+    "payment_status": "partial"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <h2 id="reviews">⭐ Review Endpoints</h2>
+        
+        <div class="endpoint">
+            <div class="endpoint-title">
+                <span class="method post">POST</span> Create Review
+            </div>
+            <div class="url-box">/reviews</div>
+            
+            <div class="auth-required">
+                ⚠️ Authentication Required: Yes
+            </div>
+            
+            <div class="request-label">Request:</div>
+            <pre>{
+  "package_id": 1,
+  "booking_id": 5,
+  "rating": 5,
+  "title": "Amazing Trip!",
+  "comment": "Had an incredible experience"
+}</pre>
+            
+            <div class="headers-label">Headers:</div>
+            <pre>user_id: 1</pre>
+            
+            <div class="response-label">Response:</div>
+            <div class="response-success">
+                <pre>{
+  "status": "success",
+  "data": {
+    "review_id": 15,
+    "package_id": 1,
+    "booking_id": 5,
+    "rating": 5,
+    "title": "Amazing Trip!",
+    "created_at": "2024-01-19T10:40:00Z"
+  }
+}</pre>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <h2 id="error-handling">⚠️ Error Handling</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Status Code</th>
+                    <th>Error Message</th>
+                    <th>Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>400</td>
+                    <td>Validation error</td>
+                    <td>Check request body for missing/invalid fields</td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>Invalid credentials</td>
+                    <td>Verify email and password</td>
+                </tr>
+                <tr>
+                    <td>401</td>
+                    <td>Unauthorized</td>
+                    <td>Add user_id header or ensure user is admin</td>
+                </tr>
+                <tr>
+                    <td>404</td>
+                    <td>Not found</td>
+                    <td>Verify the ID exists</td>
+                </tr>
+                <tr>
+                    <td>409</td>
+                    <td>Email already registered</td>
+                    <td>Use different email</td>
+                </tr>
+                <tr>
+                    <td>500</td>
+                    <td>Database error</td>
+                    <td>Contact support</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="response-error">
+            <h3>Error Response Format:</h3>
+            <pre>{
+  "status": "error",
+  "error": "Error message describing what went wrong"
+}</pre>
+        </div>
+
+        <h2>📱 React Native Setup Example</h2>
+        <pre>// api/ApiService.js
+const API_BASE_URL = 'http://192.168.1.100:4000';
+
+export const apiCall = async (endpoint, method = 'GET', body = null) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    'user_id': await AsyncStorage.getItem('user_id')
+  };
+
+  const options = { method, headers, timeout: 10000 };
+  if (body) options.body = JSON.stringify(body);
+
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+  const data = await response.json();
+  
+  if (data.status === 'error') throw new Error(data.error);
+  return data.data;
+};</pre>
+
+        <footer>
+            <p><strong>IMS Backend - React Native API Guide v1.0</strong></p>
+            <p>Generated: January 19, 2026</p>
+            <p>For questions or issues, contact the backend team.</p>
+        </footer>
+    </div>
+</body>
+</html>
