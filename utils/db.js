@@ -1,10 +1,10 @@
 const mysql2 = require('mysql2')
 
 const pool = mysql2.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'manager',
-    database: 'Fin'
+    host: 'mysql-333fcb97-harshalgaulkar79-9672.d.aivencloud.com',
+    user: 'avnadmin',
+    password: 'AVNS_4JFnj57yj6izasuiIQv',
+    database: 'fin'
 })
 
 module.exports = pool
