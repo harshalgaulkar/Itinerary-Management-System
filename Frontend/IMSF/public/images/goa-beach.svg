@@ -1,0 +1,7 @@
+<!-- Goa Beach Paradise -->
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#87CEEB"/>
+  <rect width="400" height="150" y="150" fill="#F4A460"/>
+  <text x="200" y="150" font-size="24" font-weight="bold" text-anchor="middle" fill="#fff" font-family="Arial">🏖️</text>
+  <text x="200" y="180" font-size="18" text-anchor="middle" fill="#333" font-family="Arial">Goa Beach</text>
+</svg>

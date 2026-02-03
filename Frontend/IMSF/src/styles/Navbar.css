@@ -1,0 +1,157 @@
+.navbar {
+  background-color: #1a1a1a;
+  padding: 0.75rem 0;
+  box-shadow: none;
+  border-bottom: 3px solid #ff6b6b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.navbar-container {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-logo span {
+  color: #ff6b6b;
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.navbar-link:hover {
+  color: #ff6b6b;
+}
+
+.navbar-link.admin-link {
+  background-color: #ff6b6b;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.navbar-link.admin-link:hover {
+  background-color: #ff5252;
+  color: #fff;
+}
+
+
+.user-name {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.navbar-btn {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar-btn:hover {
+  background-color: #ff5252;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-menu {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .navbar-link {
+    font-size: 0.9rem;
+  }
+
+  .navbar-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Admin Dropdown Menu */
+.navbar-dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #2a2a2a;
+  border: 1px solid #ff6b6b;
+  border-radius: 4px;
+  min-width: 200px;
+  z-index: 1001;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin-top: 5px;
+}
+
+.dropdown-link {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-link:last-child {
+  border-bottom: none;
+}
+
+.dropdown-link:hover {
+  background: #ff6b6b;
+  color: #fff;
+  padding-left: 20px;
+}

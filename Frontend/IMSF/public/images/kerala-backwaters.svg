@@ -1,0 +1,16 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#grad1)"/>
+  <ellipse cx="200" cy="80" rx="40" ry="30" fill="#FFD700" opacity="0.8"/>
+  <path d="M 0 200 Q 100 150 200 170 T 400 200 L 400 300 L 0 300 Z" fill="#1E90FF" opacity="0.6"/>
+  <path d="M 0 220 Q 100 200 200 210 T 400 220 L 400 300 L 0 300 Z" fill="#0047AB"/>
+  <circle cx="100" cy="250" r="15" fill="#FFF" opacity="0.3"/>
+  <circle cx="300" cy="260" r="12" fill="#FFF" opacity="0.3"/>
+  <text x="200" y="150" font-size="48" text-anchor="middle" fill="#fff">🏖️</text>
+  <text x="200" y="290" font-size="14" text-anchor="middle" fill="#FFF" font-weight="bold">Kerala Backwaters</text>
+</svg>

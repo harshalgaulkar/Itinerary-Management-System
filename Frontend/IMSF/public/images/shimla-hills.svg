@@ -1,0 +1,16 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#90EE90;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#grad3)"/>
+  <path d="M 50 200 L 100 120 L 150 160 L 200 80 L 250 140 L 300 100 L 350 150 L 400 120 L 400 300 L 0 300 Z" fill="#228B22"/>
+  <path d="M 40 210 L 90 140 L 140 180 L 190 110 L 240 170 L 290 130 L 340 180 L 400 150 L 400 300 L 0 300 Z" fill="#32CD32"/>
+  <polygon points="80,140 95,100 110,140" fill="#8B4513"/>
+  <polygon points="180,110 200,50 220,110" fill="#8B4513"/>
+  <polygon points="300,130 320,80 340,130" fill="#8B4513"/>
+  <text x="200" y="150" font-size="48" text-anchor="middle" fill="#fff">⛰️</text>
+  <text x="200" y="290" font-size="14" text-anchor="middle" fill="#FFF" font-weight="bold">Shimla Hills</text>
+</svg>

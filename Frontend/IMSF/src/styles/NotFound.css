@@ -1,0 +1,44 @@
+.not-found-container {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.not-found-content h1 {
+  font-size: 6rem;
+  color: #667eea;
+  margin: 0;
+  line-height: 1;
+}
+
+.not-found-content h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.not-found-content p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .not-found-content h1 {
+    font-size: 4rem;
+  }
+
+  .not-found-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .not-found-content p {
+    font-size: 1rem;
+  }
+}

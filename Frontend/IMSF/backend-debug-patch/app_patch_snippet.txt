@@ -1,0 +1,16 @@
+--- PATCH SNIPPET: add to your main server file (e.g. app.js / index.js) ---
+
+// after other require/imports and after app.use(express.json())
+const debugLogger = require('./middleware/debugLogger');
+app.use(debugLogger);
+
+// mount debug routes
+const debugRoutes = require('./routes/debug');
+app.use('/debug', debugRoutes);
+
+// Optional: add small route to check health
+app.get('/health', (req, res) => res.json({ ok: true, ts: new Date().toISOString() }));
+
+// Save the file and restart the server (npm run dev or node index.js)
+
+--- END SNIPPET ---
