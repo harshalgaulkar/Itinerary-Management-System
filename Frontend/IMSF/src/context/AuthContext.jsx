@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { userAPI } from '../services/endpoints';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { userAPI } from "../services/endpoints";
 
 const AuthContext = createContext();
 
@@ -12,18 +12,18 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const token = localStorage.getItem('authToken');
-        const userId = localStorage.getItem('userId');
-        
+        const token = localStorage.getItem("authToken");
+        const userId = localStorage.getItem("userId");
+
         if (token && userId) {
           const response = await userAPI.getProfile(userId);
           setUser(response.data.data);
         }
       } catch (err) {
-        console.error('Auth check failed:', err);
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userRole');
+        console.error("Auth check failed:", err);
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userRole");
       } finally {
         setLoading(false);
       }
@@ -38,16 +38,16 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const response = await userAPI.signin(email, password);
       const userData = response.data.data;
-      
+
       // Store auth data
-      localStorage.setItem('authToken', userData.token);
-      localStorage.setItem('userId', userData.user_id);
-      localStorage.setItem('userRole', userData.role);
-      
+      localStorage.setItem("authToken", userData.token);
+      localStorage.setItem("userId", userData.user_id);
+      localStorage.setItem("userRole", userData.role);
+
       setUser(userData);
       return userData;
     } catch (err) {
-      const errorMessage = err.response?.data?.error || 'Login failed';
+      const errorMessage = err.response?.data?.error || "Login failed";
       setError(errorMessage);
       throw err;
     } finally {
@@ -61,16 +61,16 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       const response = await userAPI.signup(userData);
       const newUser = response.data.data;
-      
+
       // Store auth data
-      localStorage.setItem('authToken', newUser.token);
-      localStorage.setItem('userId', newUser.user_id);
-      localStorage.setItem('userRole', newUser.role);
-      
+      localStorage.setItem("authToken", newUser.token);
+      localStorage.setItem("userId", newUser.user_id);
+      localStorage.setItem("userRole", newUser.role);
+
       setUser(newUser);
       return newUser;
     } catch (err) {
-      const errorMessage = err.response?.data?.error || 'Signup failed';
+      const errorMessage = err.response?.data?.error || "Signup failed";
       setError(errorMessage);
       throw err;
     } finally {
@@ -79,9 +79,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('userRole');
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userRole");
     setUser(null);
   };
 
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
       setUser(updatedUser);
       return updatedUser;
     } catch (err) {
-      const errorMessage = err.response?.data?.error || 'Update failed';
+      const errorMessage = err.response?.data?.error || "Update failed";
       setError(errorMessage);
       throw err;
     }
@@ -108,7 +108,7 @@ export const AuthProvider = ({ children }) => {
     logout,
     updateProfile,
     isAuthenticated: !!user,
-    isAdmin: user?.role === 'admin',
+    isAdmin: user?.role === "admin",
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -117,7 +117,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within AuthProvider');
+    throw new Error("useAuth must be used within AuthProvider");
   }
   return context;
 };
