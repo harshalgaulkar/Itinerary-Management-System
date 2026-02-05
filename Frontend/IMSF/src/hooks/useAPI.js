@@ -1,5 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
-import { handleApiError } from '../services/api';
+import { useState, useCallback, useEffect } from "react";
+import { handleApiError } from "../services/api";
 
 /**
  * Custom hook for handling API requests with loading and error states
@@ -11,21 +11,24 @@ export const useAPI = (apiFunction) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const execute = useCallback(async (...args) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await apiFunction(...args);
-      setData(response.data);
-      return response.data;
-    } catch (err) {
-      const errorObj = handleApiError(err);
-      setError(errorObj);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [apiFunction]);
+  const execute = useCallback(
+    async (...args) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFunction(...args);
+        setData(response.data);
+        return response.data;
+      } catch (err) {
+        const errorObj = handleApiError(err);
+        setError(errorObj);
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [apiFunction],
+  );
 
   const reset = useCallback(() => {
     setData(null);
@@ -56,7 +59,7 @@ export const useFetch = (apiFunction, dependencies = []) => {
     } catch (err) {
       const errorObj = handleApiError(err);
       setError(errorObj);
-      console.error('Fetch error:', errorObj);
+      console.error("Fetch error:", errorObj);
     } finally {
       setLoading(false);
     }
@@ -80,21 +83,24 @@ export const useMutation = (apiFunction) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const mutate = useCallback(async (...args) => {
-    try {
-      setLoading(true);
-      setError(null);
-      const response = await apiFunction(...args);
-      setData(response.data);
-      return response.data;
-    } catch (err) {
-      const errorObj = handleApiError(err);
-      setError(errorObj);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [apiFunction]);
+  const mutate = useCallback(
+    async (...args) => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await apiFunction(...args);
+        setData(response.data);
+        return response.data;
+      } catch (err) {
+        const errorObj = handleApiError(err);
+        setError(errorObj);
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [apiFunction],
+  );
 
   const reset = useCallback(() => {
     setData(null);
